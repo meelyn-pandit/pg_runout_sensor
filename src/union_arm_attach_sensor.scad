@@ -1,16 +1,31 @@
 module arm_attach() {
-    translate([20,-0.5,0])
-    import("/home/meelyn/Documents/3d_printing/pg_filament_guide_w_runout_sensor/stl/original_arm_w_attachment.stl", convexity=3);
+    rotate([0,117,0])
+    import("/home/meelyn_pandit/Documents/3d_prints/pg_runout_sensor/stl/original_arm_w_attachment.stl", 
+    convexity=3);
+
 }
 
 module runout_sensor() {
-  rotate([0,270,0])
-    rotate([0,0,90])
-   import("/home/meelyn/Documents/3d_printing/pg_filament_guide_w_runout_sensor/stl/Filament_Sensor_Housing.stl", convexity=3);
+   import("/home/meelyn_pandit/Documents/3d_prints/pg_runout_sensor/stl/Filament_Sensor_Crealityv1.stl", convexity=3);
 }
 
-union(){
-    arm_attach();
-    translate([0,-10,-15])
-    runout_sensor();
+module extended_arm() {
+    union() {
+        translate([7.7,-15,71])
+                color("blue")
+                cube([23,19,4]);
+        translate([7.7,0,60])
+            color("red")
+            cube([23,4,15]);
+        translate([-1,-6.5,54])
+            arm_attach();
+    }
+}
+
+
+union() {
+    extended_arm();
+    
+        translate([-8.5,-28.3,71])
+            runout_sensor();
 }
