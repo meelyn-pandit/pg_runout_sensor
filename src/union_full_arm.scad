@@ -17,14 +17,14 @@ module arm_attach() {
 }
 
 module runout_sensor() {
-   import("/home/meelyn_pandit/Documents/3d_prints/pg_runout_sensor/stl/Filament_Sensor_Crealityv1.stl", convexity=3);
+   import("/home/meelyn_pandit/Documents/3d_prints/pg_runout_sensor/stl/Filament_Sensor_Crealityv1.3mf", convexity=3);
 }
 
 module extended_arm() {
     union() {
-        translate([7.7,-15,71])
+        translate([7.7,-6,71])
                 color("blue")
-                cube([23,19,4]);
+                cube([20,6,4]);
         translate([7.7,0,60])
             color("red")
             cube([23,4,15]);
@@ -36,8 +36,8 @@ module extended_arm() {
 module arm_sensor() {    
     union() {
         extended_arm();
-        
-            translate([-8.5,-28.3,71])
+        rotate([0,0,180])
+            translate([-8.5,6.5,80])
                 runout_sensor();
     }
 }
